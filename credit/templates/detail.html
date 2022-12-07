@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<p>{{ object.name }} - {{ object.birth_year }} - {{ object.citizenship }} - {{ object.work_place }} - {{ object.update_date }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        {% for account in detail.accounts.all %}
+        {% for credit in account.credits.all %}
+        <td><h3>{{ detail.name }}</h3></td>
+                    <p><label>Номер аккаунта: {{ account.number }}</label></p>
+                    <p><label>Тип аккаунта: {{ account.account_type }}</label></p>
+                    <p><label>Сумма кредита: {{ credit.sum }}</label></p>
+                    <p><label>Дата получения кредита: {{ credit.date }}</label></p>
+        {% endfor %}
+        {% endfor %}
+    </fieldset>
+</form>
+
+</body>
+</html>
